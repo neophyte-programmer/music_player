@@ -11,42 +11,39 @@
           Pink: hsl(356, 66%, 75%)
           Teal: hsl(174, 63%, 62%)
     */
-    $first-hue: 620;
-    $sat: 66%;
-    $lig: 75%;
-    $second-hue: 219;
-    $first-color: hsl(var($first-hue), var($sat), var($lig));
-    $first-color-alt: hsl(var($first-hue), var($sat), 61%); /* -4% */
-    $title-color: hsl(var($second-hue), 15%, 95%);
-    $text-color: hsl(var($second-hue), 8%, 75%);
-    $text-color-light: hsl(var($second-hue), 4%, 55%);
-    $body-color: hsl(var($second-hue), 48%, 8%);
-    $container-color: hsl(var($second-hue), 32%, 12%);
+$first-hue: 620;
+$sat: 66%;
+$lig: 75%;
+$second-hue: 219;
+$first-color: hsl($first-hue, var($sat), var($lig));
+$first-color-alt: hsl($first-hue, var($sat), 61%); /* -4% */
+$title-color: hsl($second-hue, 15%, 95%);
+$text-color: hsl($second-hue, 8%, 75%);
+$text-color-light: hsl($second-hue, 4%, 55%);
+$body-color: hsl($second-hue, 48%, 8%);
+$container-color: hsl($second-hue, 32%, 12%);
   
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
-    $body-font: 'Poppins', sans-serif;
-    $biggest-font-size: 1.75rem;
-    $h1-font-size: 1.5rem;
-    $h2-font-size: 1.25rem;
-    $h3-font-size: 1rem;
-    $normal-font-size: .938rem;
-    $small-font-size: .813rem;
-    $smaller-font-size: .75rem;
-    $tiny-font-size: .625rem;
+$body-font: 'Poppins', sans-serif;
+$biggest-font-size: 1.75rem;
+$h1-font-size: 1.5rem;
+$h2-font-size: 1.25rem;
+$h3-font-size: 1rem;
+$normal-font-size: .938rem;
+$small-font-size: .813rem;
+$smaller-font-size: .75rem;
+$tiny-font-size: .625rem;
   
     /*========== Font weight ==========*/
-    $font-medium: 500;
-    $font-semibold: 600;
+$font-medium: 500;
+$font-semibold: 600;
   
-    /*========== z index ==========*/
-    $z-tooltip: 10;
-    $z-fixed: 100;
-    $z-modal: 1000;
+
   
   
   /* Responsive typography */
-  @media screen and (min-width: 968px) {
+@media screen and (min-width: 968px) {
     :root {
       $biggest-font-size: 2.5rem;
       $h1-font-size: 2.25rem;
@@ -79,19 +76,19 @@ body,
 button,
 input,
 textarea {
-  font-family: var($body-font);
-  font-size: var($normal-font-size);
+  font-family: $body-font;
+  font-size: $normal-font-size;
 }
 
 body {
-  background-color: var($body-color);   
-  color: var($text-color);
+  background-color: $body-color;   
+  color: $text-color;
   transition: .4s; 
 }
 
 h1, h2, h3 {
-  color: var($title-color);
-  font-weight: var($font-semibold);
+  color: $title-color;
+  font-weight: $font-semibold;
 }
 
 ul {
