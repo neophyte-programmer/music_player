@@ -17,7 +17,7 @@ $lig: 75%;
 $second-hue: 219;
 $third-hue: 215;
 $first-color: hsl($first-hue, $sat, $lig);
-$first-color-alt: hsl($first-hue, $sat, 61%); /* -4% */
+$first-color-alt: hsl($first-hue, $sat, 51%); /* -4% */
 $second-color: hsl($third-hue, 90%, $lig);
 $title-color: hsl($second-hue, 15%, 95%);
 $text-color: hsl($second-hue, 8%, 75%);
