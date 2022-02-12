@@ -8,6 +8,7 @@ const musicAudio = document.querySelector('.music-audio')
 const playPauseBtn = document.querySelector('.play__pause')
 const previousBtn = document.querySelector('#previous')
 const nextBtn = document.querySelector('#next')
+const progressBar = document.querySelector('.progress__bar')
 
 let musicIndex = 2
 
@@ -78,3 +79,13 @@ nextBtn.addEventListener("click", () => {
 previousBtn.addEventListener("click", () => {
     previousMusic()
 })
+
+// Update progress bar according to current time of song
+mainAudio.addEventListener("timeupdate", (e) => {
+    const currentTime = e.target.currentTime
+    const duration = e.target.duration
+
+    let progressWidth = (currentTime / duration) * 100
+
+    progressBar.style.width = `${progressWidth}%`
+} )
