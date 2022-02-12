@@ -21,3 +21,24 @@ function loadMusic(indexNumber) {
     musicImage.src = `images/${allMusic[indexNumber - 1].img}.jpg`
     musicAudio.src = `songs/${allMusic[indexNumber - 1].src}.mp3`
 }
+
+// Play music 
+function playMusic() {
+    wrapper.classList.add("paused")
+    playPauseBtn.querySelector("i").classList = "wrapper__icon bx bx-pause-circle"
+    musicAudio.play()
+}
+
+// Pause music 
+function pauseMusic() {
+    wrapper.classList.remove("paused")
+    playPauseBtn.querySelector("i").classList = "wrapper__icon bx bx-play-circle"
+    musicAudio.pause()
+}
+
+// Play or pause music
+playPauseBtn.addEventListener("click", () => {
+    const isMusicPaused = wrapper.classList.contains("paused")
+    // If music is paused, play else pause
+    isMusicPaused ? pauseMusic() : playMusic()
+})
