@@ -11,6 +11,8 @@ body {
     box-shadow: 0px 4px 4px hsla(0, 0%, 4%, .3);
     border-radius: 1rem;
     padding: 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
 
     &__icon {
         cursor: pointer;
@@ -161,6 +163,102 @@ body {
         .play__pause:hover {
             background: linear-gradient($second-color 0%, $first-color-alt 100%);
             transform: scale(1.1);
+        }
+    }
+
+    .music__list-wrapper {
+        position: absolute;
+        left: 0;
+        bottom: -56%;
+        opacity: 0;
+        pointer-events: none;
+        background: $container-color;
+        border-radius: 1rem;
+        box-shadow: 0px -5px  10px rgba(255, 255, 255, 0.1);
+        width: 100%;
+        padding: 1rem 2rem;
+        transition: all .3s ease-out;
+
+        &.show {
+            bottom: 0;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .music__list-header,
+        .music__list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .music__list-header {
+
+            .music__list-row{
+                display: flex;
+                align-items: center;
+                font-size: 1.1rem;
+
+                i {
+                    cursor: default;
+                }
+
+                .music__list-heading {
+                    margin-left: 5px;
+                }
+            }
+
+            #close {
+                font-size: 1.5rem;
+            }
+        }
+
+        .music__list {
+            margin: 10px 0;
+            max-height: 16.25rem;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: .4rem;
+                border-radius: .5rem;
+                background-color: hsl($second-hue, 8%, 32%);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: hsl($second-hue, 8%, 20%);
+                border-radius: .5rem;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: hsl($second-hue, 8%, 16%);
+              }
+
+            &-item {
+                padding-bottom: 10px;
+                margin-bottom: 5px;
+                border-bottom: 1px solid $text-color-light;
+                cursor: pointer;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .music__list-row {
+
+                    .music__list-info {
+                        font-size: 1rem;
+                    }
+
+                    .music__list-location {
+                        color: $text-color-light;
+                    }
+                }
+
+                .audio__duration {
+                    font-size: 1rem;
+                }
+            }
         }
     }
 }
