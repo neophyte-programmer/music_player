@@ -65,12 +65,12 @@ body {
     .progress__area {
         height: 6px;
         border-radius: 50px;
-        background-color: $text-color-light;
+        background-color: #ffffff20;
         cursor: pointer;
 
         .progress__bar {
             height: inherit;
-            width: 50%;
+            width: 0;
             position: relative;
             background: linear-gradient(90deg, $second-color 0%, $first-color 100%);
             border-radius: inherit;
