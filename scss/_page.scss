@@ -1,0 +1,152 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.wrapper {
+    width: 23.75rem;
+    background: $container-color;
+    box-shadow: 0px 4px 4px hsla(0, 0%, 4%, .3);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+
+    &__icon {
+        cursor: pointer;
+        
+    }
+
+    .top__bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .wrapper__icon {
+            font-size: 1.9rem;          
+        }
+
+        span {
+            font-size: 1.1rem;
+            color: $text-color-light;
+        }
+    }
+
+    .img__area {
+        height: 256px;
+        width: 100%;
+        border-radius: 1rem;
+        box-shadow: 0px 4px 4px hsla(0, 0%, 4%, .3);
+        overflow: hidden;
+        margin-top: 1.5rem;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .song__details {
+        text-align: center;
+        margin: 1.8rem 0;
+
+        .song__name {
+            font-size: 1.5rem;
+        }
+
+        .song__artist {
+            font-size: 1rem;
+            color: $text-color-light;
+        }
+    }
+
+    .progress__area {
+        height: 6px;
+        border-radius: 50px;
+        background-color: $text-color-light;
+        cursor: pointer;
+
+        .progress__bar {
+            height: inherit;
+            width: 50%;
+            position: relative;
+            background: linear-gradient(90deg, $second-color 0%, $first-color 100%);
+            border-radius: inherit;
+
+            &::before {
+                content: "";
+                position: absolute;
+                height: .75rem;
+                width: .75rem;
+                background: #fff;
+                border-radius: inherit;
+                top: 50%;
+                transform: translateY(-50%);
+                right: -5px;
+                background: inherit;
+                opacity: 0;
+                transition: opacity .4s ease;
+            }
+        }
+
+        &:hover {
+            .progress__bar::before {
+                opacity: 1;
+            }
+        }
+
+        .timer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2px;
+
+            .current {
+                font-size: .813rem;
+                color: $text-color-light;
+            }
+
+        }
+    }
+
+    .controls {
+        margin: 2.5rem 0 0.3px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .wrapper__icon.other {
+            font-size: 1.75rem;
+            user-select: none;
+            background: linear-gradient($second-color 0%, $first-color 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            &:nth-child(2),
+            &:nth-child(4){
+                font-size: 2.5rem;
+            }
+        }
+
+        .play__pause {
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient($second-color 0%, $first-color 100%);
+            height: 50px;
+            width: 50px;
+
+            .wrapper__icon {
+               font-size: 3.9rem;
+               padding: .5rem;
+               color: $container-color; 
+               transition: .4s ease;
+               margin-left: .4rem;
+               
+            }
+        }
+    }
+}
+

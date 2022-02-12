@@ -5,11 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Music Player</title>
 </head>
 <body>
-    
+    <div class="wrapper">
+        <div class="top__bar">
+            <i class='wrapper__icon bx bx-chevron-down'></i>
+            <span>Now Playing</span>
+            <i class='wrapper__icon bx bx-dots-horizontal-rounded' ></i>
+        </div>
+        <div class="img__area">
+            <img src="/images/Stay.jpg" alt="">
+        </div>
+        <div class="song__details">
+            <p class="song__name">Stay</p>
+            <p class="song__artist">The Kid Laroi ft. Justin Bieber</p>
+        </div>
+        <div class="progress__area">
+            <div class="progress__bar">
+                
+            </div>
+            <div class="timer">
+                <div class="current">0:20</div>
+                <div class="current">3:40</div>
+            </div>
+        </div>
+        <div class="controls">
+            <i class='wrapper__icon other bx bx-repost' id="repeat-playlist" ></i>
+            <i class='wrapper__icon other bx bx-skip-previous' id="previous" ></i>
+            <div class="play__pause">
+                <i class='wrapper__icon bx bx-play' id="play" ></i>
+                <!-- <i class='wrapper__icon bx bx-pause' id="pause" ></i> -->
+            </div>
+            <i class='wrapper__icon other bx bx-skip-next' id="next" ></i>
+            <i class='wrapper__icon other bx bxs-playlist' id="more-music" ></i>
+        </div>
+    </div>
     <script src="/js/app.js"></script>
 </body>
 </html>
