@@ -83,5 +83,5 @@ let allMusic = [
 		artist: 'Fireboy DML',
 		img: 'vibration',
 		src: 'vibration',
-	},
+	}
 ]
