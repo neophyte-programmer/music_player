@@ -12,80 +12,80 @@ const progressBar = document.querySelector('.progress__bar')
 
 let musicIndex = 2
 
-window.addEventListener("load", () => {
-    // Call loadMusic() once window is loaded
-    loadMusic(musicIndex)
+window.addEventListener('load', () => {
+	// Call loadMusic() once window is loaded
+	loadMusic(musicIndex)
 })
 
 // FUNCTIONS
 
 // Load Music and Details To Page
 function loadMusic(indexNumber) {
-    musicTitle.innerText = allMusic[indexNumber - 1].name
-    musicArtist.innerText = allMusic[indexNumber - 1].artist
-    musicImage.src = `images/${allMusic[indexNumber - 1].img}.jpg`
-    musicAudio.src = `songs/${allMusic[indexNumber - 1].src}.mp3`
+	musicTitle.innerText = allMusic[indexNumber - 1].name
+	musicArtist.innerText = allMusic[indexNumber - 1].artist
+	musicImage.src = `images/${allMusic[indexNumber - 1].img}.jpg`
+	musicAudio.src = `songs/${allMusic[indexNumber - 1].src}.mp3`
 }
 
-// Play music 
+// Play music
 function playMusic() {
-    wrapper.classList.add("paused")
-    playPauseBtn.querySelector("i").classList = "wrapper__icon bx bx-pause-circle"
-    musicAudio.play()
+	wrapper.classList.add('paused')
+	playPauseBtn.querySelector('i').classList =
+		'wrapper__icon bx bx-pause-circle'
+	musicAudio.play()
 }
 
-// Pause music 
+// Pause music
 function pauseMusic() {
-    wrapper.classList.remove("paused")
-    playPauseBtn.querySelector("i").classList = "wrapper__icon bx bx-play-circle"
-    musicAudio.pause()
+	wrapper.classList.remove('paused')
+	playPauseBtn.querySelector('i').classList =
+		'wrapper__icon bx bx-play-circle'
+	musicAudio.pause()
 }
 
 // Next Music
 function nextMusic() {
-    // Increment indexMusic by 1
-    musicIndex++
-    musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex
-    loadMusic(musicIndex)
-    playMusic()
+	// Increment indexMusic by 1
+	musicIndex++
+	musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex)
+	loadMusic(musicIndex)
+	playMusic()
 }
 
 // Previous Music
 function previousMusic() {
-    // Decrement indexMusic by 1
-    musicIndex--
-    musicIndex < 1 ? musicIndex = allMusic.length : musicIndex = musicIndex
-    loadMusic(musicIndex)
-    playMusic()
+	// Decrement indexMusic by 1
+	musicIndex--
+	musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex)
+	loadMusic(musicIndex)
+	playMusic()
 }
-
 
 // EVENT LISTENERS
 
 // Play or pause music
-playPauseBtn.addEventListener("click", () => {
-    const isMusicPaused = wrapper.classList.contains("paused")
-    // If music is paused, play else pause
-    isMusicPaused ? pauseMusic() : playMusic()
-})
-
-
-// When next button is clicked, nextMusic() is called
-nextBtn.addEventListener("click", () => {
-    nextMusic()
+playPauseBtn.addEventListener('click', () => {
+	const isMusicPaused = wrapper.classList.contains('paused')
+	// If music is paused, play else pause
+	isMusicPaused ? pauseMusic() : playMusic()
 })
 
 // When next button is clicked, nextMusic() is called
-previousBtn.addEventListener("click", () => {
-    previousMusic()
+nextBtn.addEventListener('click', () => {
+	nextMusic()
+})
+
+// When next button is clicked, nextMusic() is called
+previousBtn.addEventListener('click', () => {
+	previousMusic()
 })
 
 // Update progress bar according to current time of song
-mainAudio.addEventListener("timeupdate", (e) => {
-    const currentTime = e.target.currentTime
-    const duration = e.target.duration
+musicAudio.addEventListener('timeupdate', (e) => {
+	const currentTime = e.target.currentTime
+	const duration = e.target.duration
 
-    let progressWidth = (currentTime / duration) * 100
+	let progressWidth = (currentTime / duration) * 100
 
-    progressBar.style.width = `${progressWidth}%`
-} )
+	progressBar.style.width = `${progressWidth}%`
+})
