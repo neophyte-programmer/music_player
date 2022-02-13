@@ -10,13 +10,17 @@ const previousBtn = document.querySelector('#previous')
 const nextBtn = document.querySelector('#next')
 const progressBar = document.querySelector('.progress__bar')
 const progressArea = document.querySelector('.progress__area')
+const repeatBtn = document.querySelector("#repeat-playlist")
 
+
+// WINDOW FUNCTION
 let musicIndex = 1
 
 window.addEventListener('load', () => {
 	// Call loadMusic() once window is loaded
 	loadMusic(musicIndex)
 })
+
 
 // FUNCTIONS
 
@@ -63,6 +67,7 @@ function previousMusic() {
 }
 
 // EVENT LISTENERS
+
 
 // Play or pause music
 playPauseBtn.addEventListener('click', () => {
@@ -118,5 +123,28 @@ progressArea.addEventListener('click', (e) => {
 	let songDuration = musicAudio.duration // getting total duration
 
 	musicAudio.currentTime =
-		(clickedOffSetX / progressWidthValue) * songDuration
+        (clickedOffSetX / progressWidthValue) * songDuration
+    
+    playMusic()
+})
+
+// Repeat and shuffle song based on icon
+repeatBtn.addEventListener("click", () => {
+    // get the innertext of the icon and change accordingly
+    let getClass = repeatBtn.innerText // getting innertext of icon
+    // Different changes on different clicks on the icon
+    switch (getClass) {
+        case "repeat":
+            repeatBtn.innerText = "repeat_one"
+            repeatBtn.setAttribute("title", "Loop Current Song")
+            break
+        case "repeat_one":
+            repeatBtn.innerText = "shuffle"
+            repeatBtn.setAttribute("title", "Shuffles Through Playlist")
+            break
+        case "shuffle":
+            repeatBtn.innerText = "repeat"
+            repeatBtn.setAttribute("title", "Loops Playlist")
+            break
+    }
 })
