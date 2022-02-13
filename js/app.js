@@ -1,3 +1,92 @@
+// Creating an array to store music
+let allMusic = [
+	{
+		name: '4:44',
+		artist: 'JAY Z',
+		img: '444',
+		src: 'four',
+	},
+	{
+		name: 'Aben Wo Ha',
+		artist: 'Daddy Lumba',
+		img: 'aben_wo_ha',
+		src: 'aben_wo_ha',
+	},
+	{
+		name: 'Blinding Lights',
+		artist: 'The Weeknd',
+		img: 'blinding_lights',
+		src: 'blinding_lights',
+	},
+	{
+		name: 'Fall In Love',
+		artist: 'D\'banj',
+		img: 'fall_in_love',
+		src: 'fall_in_love',
+	},
+	{
+		name: 'For Tonight',
+		artist: 'Giveon',
+		img: 'for_tonight',
+		src: 'for_tonight',
+	},
+	{
+		name: 'Get Down On It',
+		artist: 'Kool and the Gang',
+		img: 'get_down_on_it',
+		src: 'get_down_on_it',
+	},
+	{
+		name: 'Heat Waves',
+		artist: 'Glass Animals',
+		img: 'heat_waves',
+		src: 'heat_waves',
+	},
+	{
+		name: 'Let\'s Get It On',
+		artist: 'Marvin Gaye',
+		img: 'lets_get_it_on',
+		src: 'lets_get_it_on',
+	},
+	{
+		name: 'No Wahala',
+		artist: '1da Banton',
+		img: 'no_wahala',
+		src: 'no_wahala',
+	},
+	{
+		name: 'Peru',
+		artist: 'Fireboy DML ft Ed Sheeran',
+		img: 'peru',
+		src: 'peru',
+	},
+	{
+		name: 'Save Your Tears',
+		artist: 'The Weeknd ft Ariana Grande',
+		img: 'save_your_tears',
+		src: 'save_your_tears',
+	},
+	{
+		name: 'Stay',
+		artist: 'The Kid LAROI ft Justin Beiber',
+		img: 'stay',
+		src: 'stay',
+	},
+	{
+		name: 'Three Little Birds',
+		artist: 'Bob Marley and The Wailers',
+		img: 'three_little_birds',
+		src: 'three_little_birds',
+	},
+	{
+		name: 'Vibration',
+		artist: 'Fireboy DML',
+		img: 'vibration',
+		src: 'vibration',
+	}
+]
+
+
 // QUERY SELECTORS
 
 const wrapper = document.querySelector('.wrapper')
@@ -10,8 +99,11 @@ const previousBtn = document.querySelector('#previous')
 const nextBtn = document.querySelector('#next')
 const progressBar = document.querySelector('.progress__bar')
 const progressArea = document.querySelector('.progress__area')
-const repeatBtn = document.querySelector("#repeat-playlist")
-
+const repeatBtn = document.querySelector('#repeat-playlist')
+const musicList = document.querySelector('.music__list-wrapper')
+const showMoreBtn = document.querySelector('#more-music')
+const hideMusicBtn = document.querySelector('#close')
+const listTag = document.querySelector('.music__list')
 
 // WINDOW FUNCTION
 let musicIndex = 1
@@ -20,7 +112,6 @@ window.addEventListener('load', () => {
 	// Call loadMusic() once window is loaded
 	loadMusic(musicIndex)
 })
-
 
 // FUNCTIONS
 
@@ -67,7 +158,6 @@ function previousMusic() {
 }
 
 // EVENT LISTENERS
-
 
 // Play or pause music
 playPauseBtn.addEventListener('click', () => {
@@ -123,56 +213,92 @@ progressArea.addEventListener('click', (e) => {
 	let songDuration = musicAudio.duration // getting total duration
 
 	musicAudio.currentTime =
-        (clickedOffSetX / progressWidthValue) * songDuration
-    
-    playMusic()
+		(clickedOffSetX / progressWidthValue) * songDuration
+
+	playMusic()
 })
 
 // Repeat and shuffle song based on icon
 
 //Change icon
-repeatBtn.addEventListener("click", () => {
-    // get the innertext of the icon and change accordingly
-    let getText = repeatBtn.innerText // getting innertext of icon
-    // Different changes on different clicks on the icon
-    switch (getText) {
-        case "repeat":
-            repeatBtn.innerText = "repeat_one"
-            repeatBtn.setAttribute("title", "Loop Current Song")
-            break
-        case "repeat_one":
-            repeatBtn.innerText = "shuffle"
-            repeatBtn.setAttribute("title", "Shuffles Through Playlist")
-            break
-        case "shuffle":
-            repeatBtn.innerText = "repeat"
-            repeatBtn.setAttribute("title", "Loops Playlist")
-            break
-    }
+repeatBtn.addEventListener('click', () => {
+	// get the innertext of the icon and change accordingly
+	let getText = repeatBtn.innerText // getting innertext of icon
+	// Different changes on different clicks on the icon
+	switch (getText) {
+		case 'repeat':
+			repeatBtn.innerText = 'repeat_one'
+			repeatBtn.setAttribute('title', 'Loop Current Song')
+			break
+		case 'repeat_one':
+			repeatBtn.innerText = 'shuffle'
+			repeatBtn.setAttribute('title', 'Shuffles Through Playlist')
+			break
+		case 'shuffle':
+			repeatBtn.innerText = 'repeat'
+			repeatBtn.setAttribute('title', 'Loops Playlist')
+			break
+	}
 })
 
 // Change song based on icon
-musicAudio.addEventListener("ended", () => {
-    let getText = repeatBtn.innerText
+musicAudio.addEventListener('ended', () => {
+	let getText = repeatBtn.innerText
 
-    switch (getText) {
-        case "repeat":
-            nextMusic()
-            break
-        case "repeat_one":
-            musicAudio.currentTime = 0
-            loadMusic(musicIndex)
-            playMusic()
-            break
-        case "shuffle":
-            let randomIndex = Math.floor((Math.random() * allMusic.length) + 1)
-            do {
-                randomIndex = Math.floor((Math.random() * allMusic.length) + 1)
-            } while (musicIndex == randomIndex)
-            musicIndex = randomIndex
-            loadMusic(musicIndex)
-            playMusic()
-            break
-            
-    }
+	switch (getText) {
+		case 'repeat':
+			nextMusic()
+			break
+		case 'repeat_one':
+			musicAudio.currentTime = 0
+			loadMusic(musicIndex)
+			playMusic()
+			break
+		case 'shuffle':
+			let randomIndex = Math.floor(Math.random() * allMusic.length + 1)
+			do {
+				randomIndex = Math.floor(Math.random() * allMusic.length + 1)
+			} while (musicIndex == randomIndex)
+			musicIndex = randomIndex
+			loadMusic(musicIndex)
+			playMusic()
+			break
+	}
 })
+
+// Show Playlist
+showMoreBtn.addEventListener('click', () => {
+	musicList.classList.toggle('show')
+})
+
+// Hide Playlist
+hideMusicBtn.addEventListener('click', () => {
+	showMoreBtn.click()
+})
+
+// Create list according to array length
+for (let i = 0; i < allMusic.length; i++) {
+	// Pass song name and artist from array
+	let liTag = ` <li class="music__list-item">
+                    <div class="music__list-row">
+                        <span class="music__list-info">${allMusic[i].name}</span>
+                        <p class="music__list-location">${allMusic[i].artist}</p>
+                        <audio class="${allMusic[i].src}" src="songs/${allMusic[i].src}.mp3"></audio>
+                    </div>
+                    <span id="${allMusic[i].src}" class="audio__duration">4:20</span>
+                  </li>`
+    listTag.insertAdjacentHTML("beforeend", liTag)
+
+   let liAudioDuration = listTag.querySelector(`#${allMusic[i].src}`)
+   let liAudioTag = listTag.querySelector(`.${allMusic[i].src}`)
+
+    liAudioTag.addEventListener("loadeddata", () => {
+        let audioDuration = liAudioTag.duration
+		let totalMinutes = Math.floor(audioDuration / 60)
+		let totalSeconds = Math.floor(audioDuration % 60)
+		totalSeconds < 10
+			? (totalSeconds = `0${totalSeconds}`)
+			: (totalSeconds = totalSeconds)
+		liAudioDuration.innerText = `${totalMinutes}:${totalSeconds}`
+    })
+}

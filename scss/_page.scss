@@ -103,7 +103,7 @@ body {
             justify-content: space-between;
             margin-top: 2px;
 
-            .current {
+            &__number {
                 font-size: .813rem;
                 color: $text-color-light;
             }
@@ -211,6 +211,7 @@ body {
 
             #close {
                 font-size: 1.5rem;
+                cursor: pointer;
             }
         }
 
