@@ -146,7 +146,8 @@ function nextMusic() {
 	musicIndex++
 	musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex)
 	loadMusic(musicIndex)
-	playMusic()
+    playMusic()
+    playingNow()
 }
 
 // Previous Music
@@ -155,7 +156,8 @@ function previousMusic() {
 	musicIndex--
 	musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex)
 	loadMusic(musicIndex)
-	playMusic()
+    playMusic()
+    playingNow()
 }
 
 // EVENT LISTENERS
@@ -164,7 +166,8 @@ function previousMusic() {
 playPauseBtn.addEventListener('click', () => {
 	const isMusicPaused = wrapper.classList.contains('paused')
 	// If music is paused, play else pause
-	isMusicPaused ? pauseMusic() : playMusic()
+    isMusicPaused ? pauseMusic() : playMusic()
+    playingNow()
 })
 
 // When next button is clicked, nextMusic() is called
@@ -262,7 +265,8 @@ musicAudio.addEventListener('ended', () => {
 			} while (musicIndex == randomIndex)
 			musicIndex = randomIndex
 			loadMusic(musicIndex)
-			playMusic()
+            playMusic()
+            playingNow()
 			break
 	}
 })
@@ -301,6 +305,7 @@ for (let i = 0; i < allMusic.length; i++) {
 			? (totalSeconds = `0${totalSeconds}`)
 			: (totalSeconds = totalSeconds)
 		liAudioDuration.innerText = `${totalMinutes}:${totalSeconds}`
+		liAudioDuration.setAttribute("t-duration", `${totalMinutes}:${totalSeconds}`)
     })
 }
 
@@ -309,13 +314,16 @@ const allLiTags = listTag.querySelectorAll(".music__list-item")
 
 function playingNow() {
     for (let j = 0; j < allLiTags.length; j++) {
-
+        let audioTag = allLiTags[j].querySelector(".audio__duration")
         if (allLiTags[j].classList.contains("playing")) {
             allLiTags[j].classList.remove("playing")
+            let addDuration = audioTag.getAttribute("t-duration")
+            audioTag.innerText = addDuration
         }
 
         if (allLiTags[j].getAttribute("li-index") == musicIndex ) {
             allLiTags[j].classList.add("playing")
+            audioTag.innerText = "Playing"
         }
         // Adding onclick attributes in all li tags
         allLiTags[j].setAttribute("onclick", "clicked(this)")
