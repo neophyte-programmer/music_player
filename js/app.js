@@ -110,7 +110,8 @@ let musicIndex = 1
 
 window.addEventListener('load', () => {
 	// Call loadMusic() once window is loaded
-	loadMusic(musicIndex)
+    loadMusic(musicIndex)
+    playingNow()
 })
 
 // FUNCTIONS
@@ -279,7 +280,7 @@ hideMusicBtn.addEventListener('click', () => {
 // Create list according to array length
 for (let i = 0; i < allMusic.length; i++) {
 	// Pass song name and artist from array
-	let liTag = ` <li class="music__list-item">
+	let liTag = ` <li class="music__list-item" li-index="${i+1}">
                     <div class="music__list-row">
                         <span class="music__list-info">${allMusic[i].name}</span>
                         <p class="music__list-location">${allMusic[i].artist}</p>
@@ -301,4 +302,31 @@ for (let i = 0; i < allMusic.length; i++) {
 			: (totalSeconds = totalSeconds)
 		liAudioDuration.innerText = `${totalMinutes}:${totalSeconds}`
     })
+}
+
+// Play song on click
+const allLiTags = listTag.querySelectorAll(".music__list-item")
+
+function playingNow() {
+    for (let j = 0; j < allLiTags.length; j++) {
+
+        if (allLiTags[j].classList.contains("playing")) {
+            allLiTags[j].classList.remove("playing")
+        }
+
+        if (allLiTags[j].getAttribute("li-index") == musicIndex ) {
+            allLiTags[j].classList.add("playing")
+        }
+        // Adding onclick attributes in all li tags
+        allLiTags[j].setAttribute("onclick", "clicked(this)")
+        
+    }
+}
+
+function clicked(element) {
+    let getLiIndex = element.getAttribute("li-index")
+    musicIndex = getLiIndex 
+    loadMusic(musicIndex)
+    playMusic()
+    playingNow()
 }

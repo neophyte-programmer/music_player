@@ -259,6 +259,13 @@ body {
                 .audio__duration {
                     font-size: 1rem;
                 }
+
+
+            }
+
+            &-item.playing {
+                color: $first-color;
+                pointer-events: none;
             }
         }
     }
