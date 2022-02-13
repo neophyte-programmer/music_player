@@ -10,7 +10,7 @@ const previousBtn = document.querySelector('#previous')
 const nextBtn = document.querySelector('#next')
 const progressBar = document.querySelector('.progress__bar')
 
-let musicIndex = 2
+let musicIndex = 1
 
 window.addEventListener('load', () => {
 	// Call loadMusic() once window is loaded
@@ -84,8 +84,27 @@ previousBtn.addEventListener('click', () => {
 musicAudio.addEventListener('timeupdate', (e) => {
 	const currentTime = e.target.currentTime
 	const duration = e.target.duration
+    let progressWidth = (currentTime / duration) * 100
+    progressBar.style.width = `${progressWidth}%`
 
-	let progressWidth = (currentTime / duration) * 100
+    let musicCurrentTime = document.querySelector(".current")
+    let musicDuration = document.querySelector(".duration")
 
-	progressBar.style.width = `${progressWidth}%`
+    musicAudio.addEventListener("loadeddata", () => {
+
+        // Update song duration
+        let audioDuration = musicAudio.duration
+        let totalMinutes = Math.floor(audioDuration / 60)
+        let totalSeconds = Math.floor(audioDuration % 60)
+        totalSeconds < 10 ? totalSeconds = `0${totalSeconds}` : totalSeconds = totalSeconds
+        musicDuration.innerText = `${totalMinutes}:${totalSeconds}`
+
+    })
+    // Update current time of song
+    let audioCurrent = musicAudio.currentTime
+    let currentMinute = Math.floor(audioCurrent / 60)
+    let currentSecond = Math.floor(audioCurrent % 60)
+    currentSecond < 10 ? currentSecond = `0${currentSecond}` : currentSecond = currentSecond
+    musicCurrentTime.innerText = `${currentMinute}:${currentSecond}`
+    
 })
