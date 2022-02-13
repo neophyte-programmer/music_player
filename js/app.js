@@ -9,6 +9,7 @@ const playPauseBtn = document.querySelector('.play__pause')
 const previousBtn = document.querySelector('#previous')
 const nextBtn = document.querySelector('#next')
 const progressBar = document.querySelector('.progress__bar')
+const progressArea = document.querySelector('.progress__area')
 
 let musicIndex = 1
 
@@ -84,27 +85,38 @@ previousBtn.addEventListener('click', () => {
 musicAudio.addEventListener('timeupdate', (e) => {
 	const currentTime = e.target.currentTime
 	const duration = e.target.duration
-    let progressWidth = (currentTime / duration) * 100
-    progressBar.style.width = `${progressWidth}%`
+	let progressWidth = (currentTime / duration) * 100
+	progressBar.style.width = `${progressWidth}%`
 
-    let musicCurrentTime = document.querySelector(".current")
-    let musicDuration = document.querySelector(".duration")
+	let musicCurrentTime = document.querySelector('.current')
+	let musicDuration = document.querySelector('.duration')
 
-    musicAudio.addEventListener("loadeddata", () => {
+	musicAudio.addEventListener('loadeddata', () => {
+		// Update song duration
+		let audioDuration = musicAudio.duration
+		let totalMinutes = Math.floor(audioDuration / 60)
+		let totalSeconds = Math.floor(audioDuration % 60)
+		totalSeconds < 10
+			? (totalSeconds = `0${totalSeconds}`)
+			: (totalSeconds = totalSeconds)
+		musicDuration.innerText = `${totalMinutes}:${totalSeconds}`
+	})
+	// Update current time of song
+	let audioCurrent = musicAudio.currentTime
+	let currentMinute = Math.floor(audioCurrent / 60)
+	let currentSecond = Math.floor(audioCurrent % 60)
+	currentSecond < 10
+		? (currentSecond = `0${currentSecond}`)
+		: (currentSecond = currentSecond)
+	musicCurrentTime.innerText = `${currentMinute}:${currentSecond}`
+})
 
-        // Update song duration
-        let audioDuration = musicAudio.duration
-        let totalMinutes = Math.floor(audioDuration / 60)
-        let totalSeconds = Math.floor(audioDuration % 60)
-        totalSeconds < 10 ? totalSeconds = `0${totalSeconds}` : totalSeconds = totalSeconds
-        musicDuration.innerText = `${totalMinutes}:${totalSeconds}`
+// Update song time based on where you click
+progressArea.addEventListener('click', (e) => {
+	let progressWidthValue = progressArea.clientWidth //getting width of progress bar based on where you click
+	let clickedOffSetX = e.offsetX // getting offset x value
+	let songDuration = musicAudio.duration // getting total duration
 
-    })
-    // Update current time of song
-    let audioCurrent = musicAudio.currentTime
-    let currentMinute = Math.floor(audioCurrent / 60)
-    let currentSecond = Math.floor(audioCurrent % 60)
-    currentSecond < 10 ? currentSecond = `0${currentSecond}` : currentSecond = currentSecond
-    musicCurrentTime.innerText = `${currentMinute}:${currentSecond}`
-    
+	musicAudio.currentTime =
+		(clickedOffSetX / progressWidthValue) * songDuration
 })

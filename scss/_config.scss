@@ -112,3 +112,20 @@ img {
   height: auto;
   object-fit: cover;
 }
+
+.section__title, 
+.section__subtitle {
+  text-align: center;
+}
+
+.section__title {
+  font-size: $h2-font-size;
+  color: $first-color;
+  margin-bottom: 2rem;
+}
+
+.section__subtitle {
+  display: block;
+  font-size: $smaller-font-size;
+  color: $text-color-light;
+}
