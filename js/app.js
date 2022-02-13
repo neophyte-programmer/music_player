@@ -129,11 +129,13 @@ progressArea.addEventListener('click', (e) => {
 })
 
 // Repeat and shuffle song based on icon
+
+//Change icon
 repeatBtn.addEventListener("click", () => {
     // get the innertext of the icon and change accordingly
-    let getClass = repeatBtn.innerText // getting innertext of icon
+    let getText = repeatBtn.innerText // getting innertext of icon
     // Different changes on different clicks on the icon
-    switch (getClass) {
+    switch (getText) {
         case "repeat":
             repeatBtn.innerText = "repeat_one"
             repeatBtn.setAttribute("title", "Loop Current Song")
@@ -146,5 +148,31 @@ repeatBtn.addEventListener("click", () => {
             repeatBtn.innerText = "repeat"
             repeatBtn.setAttribute("title", "Loops Playlist")
             break
+    }
+})
+
+// Change song based on icon
+musicAudio.addEventListener("ended", () => {
+    let getText = repeatBtn.innerText
+
+    switch (getText) {
+        case "repeat":
+            nextMusic()
+            break
+        case "repeat_one":
+            musicAudio.currentTime = 0
+            loadMusic(musicIndex)
+            playMusic()
+            break
+        case "shuffle":
+            let randomIndex = Math.floor((Math.random() * allMusic.length) + 1)
+            do {
+                randomIndex = Math.floor((Math.random() * allMusic.length) + 1)
+            } while (musicIndex == randomIndex)
+            musicIndex = randomIndex
+            loadMusic(musicIndex)
+            playMusic()
+            break
+            
     }
 })
